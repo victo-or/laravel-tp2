@@ -2,21 +2,22 @@
 @section('title', 'Liste des étudiants')
 @section('content')
 
-    <hr>
     <div class="row">
-        <!-- <div class="col-md-8">
-            <p>Bonne lecture</p>
-        </div> -->
+
         <div class="d-flex justify-content-end">
-            <a href="{{ route('etudiant.create')}}" class='btn btn-primary'>Ajouter</a>
+            <a href="{{ route('etudiant.create')}}" class='btn btn-outline-light shadow-lg'>Ajouter</a>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Liste des étudiants</h4>
-                </div>
+        <div class="row">
+            <div class="col-12 text-center pt-2">
+                <h2 class="display-one">
+                    Liste des étudiants
+                </h2>
+            </div>
+        </div>
+            <div class="card shadow-lg border-0">
                 <div class="card-body">
                     
                     <ul>

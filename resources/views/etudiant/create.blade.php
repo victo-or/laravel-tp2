@@ -1,23 +1,21 @@
 @extends('layouts.app')
 @section('title', 'Ajouter un étudiant')
 @section('content')
-
         <div class="row">
-            <div class="col-12 text-center pt-2">
-                <h2 class="display-one">
-                    Ajouter un étudiant
-                </h2>
-            </div> <!--/col-12-->
-        </div><!--/row-->
-                <hr>
+        <div class="col-12 pt-2">
+            <a href="{{ route('etudiant.index')}}" class="btn btn-outline-light shadow-lg btn-sm">Retourner</a>
+        </div>
+        <div class="col-12 text-center pt-2">
+            <h2 class="display-one">
+                Ajouter un étudiant
+            </h2>
+        </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <form method="post">
                     @csrf
-                        <div class="card-header">
-                            Formulaire d'ajout
-                        </div>
                         <div class="card-body">   
                                 <div class="control-group col-12">
                                     <label for="nom">Nom</label>
@@ -51,8 +49,8 @@
                                     </select>
                                 </div>
                         </div>
-                        <div class="card-footer">
-                            <input type="submit" value="Ajouter" class="btn btn-success">
+                        <div>
+                            <input type="submit" value="Ajouter" class="btn btn-outline-light shadow-lg col-12">
                         </div>
                     </form>
                 </div>
