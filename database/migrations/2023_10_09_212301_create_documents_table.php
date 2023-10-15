@@ -15,7 +15,6 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            // chemin varchar(255) ??A.doc??
             $table->string('file_name', 255);
             $table->string('title', 100);
             $table->string('title_fr', 100);

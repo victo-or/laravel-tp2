@@ -29,7 +29,7 @@
                         <!-- <a class="nav-link" href="#">User List</a> -->
                     
                         <a class="nav-link" href="{{route('etudiant.index')}}">Liste des étudiants</a>
-                        <a class="nav-link" href="{{route('etudiant.index')}}">Forum</a>
+                        <a class="nav-link" href="{{route('forum.index')}}">Forum</a>
                         <a class="nav-link" href="{{route('etudiant.index')}}">Documents</a>
                         <a class="nav-link" href="{{route('logout')}}">Logout</a>
                     @endguest
