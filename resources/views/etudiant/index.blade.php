@@ -22,7 +22,7 @@
                     
                     <ul>
                         @forelse($etudiants as $etudiant)
-                            <li><a href="{{route('etudiant.show', $etudiant->id)}}">{{ $etudiant->nom }}</a></li>
+                            <li><a href="{{route('etudiant.show', $etudiant->user_id)}}">{{ $etudiant->nom }}</a></li>
                         @empty
                             <li class='text-danger'>Aucun étudiant disponible</li>
                         @endforelse

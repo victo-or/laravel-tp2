@@ -33,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <a href="{{route('etudiant.edit', $etudiant->id)}}" class="btn btn-outline-light shadow-lg">Mettre a jour</a>
+            <a href="{{route('etudiant.edit', $etudiant->user_id)}}" class="btn btn-outline-light shadow-lg">Mettre a jour</a>
         </div>
         <div class="col-6 d-flex justify-content-end">
             <button type="button" class="btn btn-outline-light shadow-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -57,7 +57,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        <form action="{{route('etudiant.delete', $etudiant->id)}}" method="post">
+        <form action="{{route('etudiant.delete', $etudiant->user_id)}}" method="post">
                 @csrf
                 @method('delete')
                 <input type="submit" value="Effacer" class="btn btn-danger">

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Ville;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class EtudiantController extends Controller
 {
@@ -40,9 +42,23 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //insert into etudiants(,) values (?, ?);
-        //return $newData = select * from etudiants where id = lastInsertedId
-        $newEtudiant = Etudiant::create([
+        $request->validate([
+            'nom' => 'required|string|min:2',
+            'adresse' => 'required',
+            'phone' => 'required|regex:/^(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/',
+            'email' => 'required|email|unique:users',
+            'date_de_naissance' => 'required|date|before:16 years ago|after:100 years ago',
+            'ville_id' => 'required|exists:villes,id'
+        ]);
+
+        // Ajout dans la table users en premier afin de récupérer son id
+        $newUser = User::create([
+            'name' => $request->nom,
+            'email' => $request->email,
+            'password' => Hash::make($request->date_de_naissance)
+        ]);
+
+        $newEtudiant = new Etudiant([
             'nom' => $request->nom,
             'adresse' => $request->adresse,
             'phone' => $request->phone,
@@ -50,8 +66,11 @@ class EtudiantController extends Controller
             'date_de_naissance' => $request->date_de_naissance,
             'ville_id' => $request->ville_id
         ]);
+
+        $newEtudiant->userSameId()->associate($newUser);
+        $newEtudiant->save();
         
-        return redirect(route('etudiant.index'))->withSuccess('Donnée ajoutée');
+        return redirect(route('etudiant.index'))->withSuccess(trans('lang.text_data_insert'));
     }
 
     /**
@@ -90,20 +109,40 @@ class EtudiantController extends Controller
      */
     public function update(Request $request, Etudiant $etudiant)
     {
-        // return $request;
-        // return $etudiant;
-
-        $etudiant->update([
-            'nom' => $request->nom,
-            'adresse' => $request->adresse,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'date_de_naissance' => $request->date_de_naissance,
-            'ville_id' => $request->ville_id
+        $request->validate([
+            'nom' => 'required|string|min:2',
+            'adresse' => 'required',
+            'phone' => 'required|regex:/^(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/',
+            'email' => 'required|email|unique:users,email,' . $etudiant->id,
+            'date_de_naissance' => 'required|date',
+            'ville_id' => 'required|exists:villes,id',
         ]);
-
-        return redirect(route('etudiant.show', $etudiant->id))->withSuccess('Donnée mise à jour');
+    
+        if ($etudiant) {
+            // Mettez à jour les champs de l'étudiant
+            $etudiant->nom = $request->nom;
+            $etudiant->adresse = $request->adresse;
+            $etudiant->phone = $request->phone;
+            $etudiant->email = $request->email;
+            $etudiant->date_de_naissance = $request->date_de_naissance;
+            $etudiant->ville_id = $request->ville_id;
+            $etudiant->save();
+    
+            // Mettez à jour l'utilisateur correspondant dans la table users
+            $user = User::find($etudiant->user_id);
+            if ($user) {
+                $user->name = $request->nom;
+                $user->email = $request->email;
+                $user->save();
+            }
+    
+            return redirect()->route('etudiant.show', $etudiant->user_id)->withSuccess('Données mises à jour');
+        } else {
+            // Gérez le cas où l'étudiant n'a pas été trouvé
+            return redirect()->route('etudiant.index')->withError('Étudiant non trouvé');
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.

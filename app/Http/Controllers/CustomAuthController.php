@@ -76,6 +76,11 @@ class CustomAuthController extends Controller
         return redirect()->intended(route('etudiant.index'));
     }
 
+    public function logout() {
+        Auth::logout();
+        return redirect(route('login'));
+    }
+
     /**
      * Display the specified resource.
      *
