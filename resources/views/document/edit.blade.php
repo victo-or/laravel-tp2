@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12 text-center pt-2">
                 <h1 class="display-one">
-                    @lang('lang.text_add_document')
+                    @lang('lang.text_modify_document')
                 </h1>
             </div> <!--/col-12-->
         </div><!--/row-->
@@ -14,6 +14,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <form method="post" enctype="multipart/form-data">
+                    @method('put')
                     @csrf
                         <div class="card-header">
                             @lang('lang.text_form')
@@ -21,7 +22,7 @@
                         <div class="card-body">   
                                 <div class="control-grup col-12">
                                     <label for="title">@lang('lang.text_title') (EN)</label>
-                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
+                                    <input type="text" id="title" name="title" class="form-control" value="{{ $document->title }}">
                                     @if($errors->has('title'))
                                         <div class="text-danger mt-2">
                                             <!-- first ici, va prendre la première erreur -->
@@ -31,7 +32,7 @@
                                 </div>
                                 <div class="control-grup col-12">
                                     <label for="title_fr">@lang('lang.text_title') (FR)</label>
-                                    <input type="text" id="title_fr" name="title_fr" class="form-control" value="{{old('title_fr')}}">
+                                    <input type="text" id="title_fr" name="title_fr" class="form-control" value="{{ $document->title_fr }}">
                                     @if($errors->has('title_fr'))
                                         <div class="text-danger mt-2">
                                             <!-- first ici, va prendre la première erreur -->
@@ -43,17 +44,11 @@
                         <div class="card-body">   
                             <div class="control-grup col-12">
                                 <label for="document_name">@lang('lang.text_upload_document') (PDF, ZIP, DOC)</label>
-                                <input type="file" id="document_name" name="document_name" class="form-control" accept=".pdf, .zip, .doc" max="8388608">
+                                <input type="file" id="document_name" name="document_name" class="form-control" accept=".pdf, .zip, .doc">
                             </div>
-                            @if($errors->has('document_name'))
-                                        <div class="text-danger mt-2">
-                                            <!-- first ici, va prendre la première erreur -->
-                                            {{$errors->first('document_name')}}
-                                        </div>
-                            @endif
                         </div>
                         <div class="card-footer">
-                            <input type="submit" class="btn btn-success" value="@lang('lang.text_add')">
+                            <input type="submit" class="btn btn-success" value="@lang('lang.text_update')">
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pagination')
+@section('title', 'Forum')
 @section('content')
 
 <div class="card">
@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
+                    <th>@lang('lang.text_title')</th>
                 </tr>
             </thead>
             <tbody>

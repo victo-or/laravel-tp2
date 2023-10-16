@@ -110,6 +110,12 @@ class ForumPostController extends Controller
      */
     public function update(Request $request, ForumPost $forumPost)
     {
+        // Vérifier si l'utilisateur actuel est l'auteur
+        if (Auth::user()->id !== $forumPost->user_id) {
+            // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
+            return redirect()->route('forum.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+        }
+
         $request->validate([
             'title' => 'required|string|max:100',
             'title_fr' => 'nullable|string|max:100',
@@ -137,11 +143,18 @@ class ForumPostController extends Controller
      */
     public function destroy(ForumPost $forumPost)
     {
+        // Vérifier si l'utilisateur actuel est l'auteur
+        if (Auth::user()->id !== $forumPost->user_id) {
+            // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
+            return redirect()->route('forum.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+        }
+        
         //return $forumPost;
         $forumPost->delete();
 
         return redirect(route('forum.index'))->withSuccess('Donnée effacée');
     }
+
     public function query(){
     //SELECT
     //select * from forum_posts;

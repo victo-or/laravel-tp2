@@ -29,11 +29,20 @@ p, select, form label, li a {
 h1:hover, h2:hover, p:hover, form select:hover, form label:hover, li a:hover {
   color: black;
 }
-svg {
+.svg-logo {
   width: 500px;
   filter: drop-shadow(2px 3px 10px rgba(0, 0, 0, 0.2));
   margin: 2rem;
 }
 .container {
   flex: 1;
+}
+
+/* Styles for custom carousel controls */
+.custom-prev .carousel-control-prev-icon::before {
+  font-size: 1rem; /* Ajustez la taille des flèches selon vos besoins */
+}
+
+.custom-next .carousel-control-next-icon::before {
+  font-size: 1rem; /* Ajustez la taille des flèches selon vos besoins */
 }

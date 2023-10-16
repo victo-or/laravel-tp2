@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Fiche étudiante')
+@section('title', __('lang.text_students'))
 @section('content')
     <div class="row">
         <div class="col-12 pt-2">
@@ -9,23 +9,23 @@
             </h2>
             <table class="table shadow-lg table-custom">
                 <tr>
-                    <td><strong>Adresse:</strong></td>
+                    <td><strong>@lang('lang.text_adress'):</strong></td>
                     <td>{{ $etudiant->adresse }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Téléphone:</strong></td>
+                    <td><strong>@lang('lang.text_phone'):</strong></td>
                     <td>{{ $etudiant->phone }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Adresse courriel:</strong></td>
+                    <td><strong>@lang('lang.text_email'):</strong></td>
                     <td>{{ $etudiant->email }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Date de naissance:</strong></td>
+                    <td><strong>@lang('lang.text_birthdate'):</strong></td>
                     <td>{{ $etudiant->date_de_naissance }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Ville:</strong></td>
+                    <td><strong>@lang('lang.text_city'):</strong></td>
                     <td>{{ $etudiant->etudiantHasVille->nom }}</td>
                 </tr>
             </table>
@@ -33,11 +33,11 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <a href="{{route('etudiant.edit', $etudiant->user_id)}}" class="btn btn-outline-light shadow-lg">Mettre a jour</a>
+            <a href="{{route('etudiant.edit', $etudiant->user_id)}}" class="btn btn-outline-light shadow-lg">@lang('lang.text_update')</a>
         </div>
         <div class="col-6 d-flex justify-content-end">
             <button type="button" class="btn btn-outline-light shadow-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                Effacer
+                @lang('lang.text_delete')
             </button>
         </div>
     </div>

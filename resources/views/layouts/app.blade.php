@@ -16,7 +16,7 @@
         <div class="container-fluid">
             @php $locale = session()->get('locale')
             @endphp
-            <a class="navbar-brand" href="#">Hello {{Auth::user() ? Auth::user()->name : 'Guest'}}</a>
+            <a class="navbar-brand" href="#">@lang('lang.text_hello') {{Auth::user() ? Auth::user()->name : 'Guest'}}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,14 +28,14 @@
                     @else
                         <!-- <a class="nav-link" href="#">User List</a> -->
                     
-                        <a class="nav-link" href="{{route('etudiant.index')}}">Liste des étudiants</a>
+                        <a class="nav-link" href="{{route('etudiant.index')}}">@lang('lang.text_student_list')</a>
                         <a class="nav-link" href="{{route('forum.index')}}">Forum</a>
-                        <a class="nav-link" href="{{route('etudiant.index')}}">Documents</a>
-                        <a class="nav-link" href="{{route('logout')}}">Logout</a>
+                        <a class="nav-link" href="{{route('document.index')}}">Documents</a>
+                        <a class="nav-link" href="{{route('logout')}}">@lang('lang.text_logout')</a>
                     @endguest
 
-                    <a class="nav-link @if($locale=='en') bg-secondary @endif"  href="{{route('lang', 'en')}}" >English</a>
-                    <a class="nav-link @if($locale=='fr') bg-secondary @endif"  href="{{route('lang', 'fr')}}" >Francais</a>
+                    <a class="nav-link @if($locale=='en') bg-secondary @endif"  href="{{route('lang', 'en')}}" >@lang('lang.text_english')</a>
+                    <a class="nav-link @if($locale=='fr') bg-secondary @endif"  href="{{route('lang', 'fr')}}" >@lang('lang.text_french')</a>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-12 pt-4">
                 <div class="d-flex justify-content-center">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1366 500" style="enable-background:new 0 0 1366 500;" xml:space="preserve">
+                    <svg class="svg-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1366 500" style="enable-background:new 0 0 1366 500;" xml:space="preserve">
                         <style type="text/css">
                             .st0 {
                                 fill: #FFFFFF;
@@ -261,7 +261,7 @@
         </div>
     </div>
     <footer>
-        <p class="m-5 text-center">&copy; 2023 Anonymous recruit. Tous droits réservés.</p>
+        <p class="m-5 text-center">&copy; 2023 Anonymous recruit. @lang('lang.text_copyrights')</p>
     </footer>
 </body>
 <!--Bootstrap JS CDN-->

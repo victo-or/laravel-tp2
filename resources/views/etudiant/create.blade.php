@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Ajouter un étudiant')
+@section('title', __('lang.text_students'))
 @section('content')
         <div class="row">
         <div class="col-12 pt-2">
@@ -7,7 +7,7 @@
         </div>
         <div class="col-12 text-center pt-2">
             <h2 class="display-one">
-                Ajouter un étudiant
+                @lang('lang.text_add_student')
             </h2>
         </div>
         </div>
@@ -18,7 +18,7 @@
                     @csrf
                         <div class="card-body">   
                                 <div class="control-group col-12">
-                                    <label for="nom">Nom</label>
+                                    <label for="nom">@lang('lang.text_name')</label>
                                     <input type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}">
                                     @if($errors->has('nom'))
                                         <div class="text-danger mt-2">
@@ -28,7 +28,7 @@
                                     @endif
                                 </div>
                                 <div class="control-group col-12">
-                                    <label for="adresse">Adresse</label>
+                                    <label for="adresse">@lang('lang.text_adress')</label>
                                     <input type="text" id="adresse" name="adresse" class="form-control" value="{{old('adresse')}}">
                                     @if($errors->has('adresse'))
                                         <div class="text-danger mt-2">
@@ -38,7 +38,7 @@
                                     @endif
                                 </div>
                                 <div class="control-group col-12">
-                                    <label for="phone">Numéro de téléphone</label>
+                                    <label for="phone">@lang('lang.text_phone')</label>
                                     <input type="text" id="phone" name="phone" placeholder="123-345-6789" class="form-control" value="{{old('phone')}}">
                                     @if($errors->has('phone'))
                                         <div class="text-danger mt-2">
@@ -48,7 +48,7 @@
                                     @endif
                                 </div>
                                 <div class="control-group col-12">
-                                    <label for="email">Adresse courriel</label>
+                                    <label for="email">@lang('lang.text_email')</label>
                                     <input type="email" id="email" name="email" class="form-control" value="{{old('email')}}">
                                     @if($errors->has('email'))
                                         <div class="text-danger mt-2">
@@ -58,7 +58,7 @@
                                     @endif
                                 </div>
                                 <div class="control-group col-12">
-                                    <label for="ddc">Date de naissance</label>
+                                    <label for="ddc">@lang('lang.text_birthdate')</label>
                                     <input type="date" id="ddc" name="date_de_naissance" class="form-control" value="{{old('date_de_naissance')}}">
                                     @if($errors->has('date_de_naissance'))
                                         <div class="text-danger mt-2">
@@ -68,13 +68,13 @@
                                     @endif
                                 </div>
                                 <div class="control-group col-12">
-                                    <label for="ville">Ville</label>
+                                    <label for="ville">@lang('lang.text_city')</label>
                                     <select name="ville_id" id="ville" class="col-12">
                                         
                                         @forelse($villes as $ville)
                                             <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
                                         @empty
-                                            <option>Aucune ville disponible</option>
+                                            <option>@lang('lang.text_no_city')</option>
                                         @endforelse
                                     </select>
                                     @if($errors->has('ville_id'))
@@ -86,7 +86,7 @@
                                 </div>
                         </div>
                         <div>
-                            <input type="submit" value="Ajouter" class="btn btn-outline-light shadow-lg col-12">
+                            <input type="submit" value="@lang('lang.text_add')" class="btn btn-outline-light shadow-lg col-12">
                         </div>
                     </form>
                 </div>

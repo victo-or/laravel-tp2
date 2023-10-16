@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::get('/etudiant', [EtudiantController::class, 'index'])->name('etudiant.index')->middleware('auth');;
 Route::get('/etudiant/{etudiant}', [EtudiantController::class, 'show'])->name('etudiant.show')->middleware('auth');;
-
 Route::get('/etudiant-create', [EtudiantController::class, 'create'])->name('etudiant.create')->middleware('auth');;
 Route::post('/etudiant-create', [EtudiantController::class, 'store']);
 Route::get('/etudiant-edit/{etudiant}', [EtudiantController::class, 'edit'])->name('etudiant.edit');
@@ -46,6 +45,10 @@ Route::get('/forum-pdf/{forumPost}', [ForumPostController::class, 'showPdf'])->n
 Route::get('/document', [DocumentController::class, 'index'])->name('document.index')->middleware('auth');
 Route::get('/document-create', [DocumentController::class, 'create'])->name('document.create')->middleware('auth');
 Route::post('/document-create', [DocumentController::class, 'store']);
+Route::get('/document-edit/{document}', [DocumentController::class, 'edit'])->name('document.edit');
+Route::put('/document-edit/{document}', [DocumentController::class, 'update']);
+Route::delete('/document-delete/{document}', [DocumentController::class, 'destroy'])->name('document.delete');
+
 // Route::get('/user-list', [CustomAuthController::class, 'userList'])->name('user.list');
 
 
