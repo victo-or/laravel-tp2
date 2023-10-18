@@ -71,6 +71,8 @@
         'text_data_insert' => 'Données insérées',
         'text_data_update' => 'Données mises à jour',
         'text_data_delete' => 'Données supprimées',
+        'text_data_not_found' => 'Non trouvé',
+        'text_data_not_authorized' => 'Non autorisé',
 
         // Footer
         "text_copyrights" => "Tous droits réservés."

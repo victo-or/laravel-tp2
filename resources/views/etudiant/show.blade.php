@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-12 pt-2">
-            <a href="{{ route('etudiant.index')}}" class="btn text-muted shadow-lg btn-sm">Retourner</a>
+            <a href="{{ route('etudiant.index')}}" class="btn text-muted shadow-lg btn-sm">@lang('lang.text_return')</a>
             <h2 class="mt-5">
                 {{ $etudiant->nom }}
             </h2>
@@ -48,11 +48,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Effacer</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">@lang('lang.text_delete')</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Voulez-vous vraiment effacer les donnée de {{ $etudiant->nom }}?
+      @lang('lang.text_modale_delete') {{ $etudiant->nom }}?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -60,7 +60,7 @@
         <form action="{{route('etudiant.delete', $etudiant->user_id)}}" method="post">
                 @csrf
                 @method('delete')
-                <input type="submit" value="Effacer" class="btn btn-danger">
+                <input type="submit" value="@lang('lang.text_delete')" class="btn btn-danger">
         </form>
       </div>
     </div>

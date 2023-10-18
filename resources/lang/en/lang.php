@@ -60,6 +60,8 @@
         'text_data_insert' => 'Data inserted',
         'text_data_update' => 'Data updated',
         'text_data_delete' => 'Data deleted',
+        'text_data_not_found' => 'Not found',
+        'text_data_not_authorized' => 'Not autorized',
 
         // Footer
         "text_copyrights" => "All rights reserved."

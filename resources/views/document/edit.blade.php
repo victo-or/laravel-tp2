@@ -4,9 +4,9 @@
 
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <h1 class="display-one">
+                <h2 class="display-one">
                     @lang('lang.text_modify_document')
-                </h1>
+                </h2>
             </div> <!--/col-12-->
         </div><!--/row-->
                 <hr>

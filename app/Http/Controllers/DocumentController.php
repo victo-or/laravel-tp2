@@ -89,7 +89,7 @@ class DocumentController extends Controller
         // Vérifier si l'utilisateur actuel est l'auteur du document
         if (Auth::user()->id !== $document->user_id) {
             // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
-            return redirect()->route('document.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+            return redirect()->route('document.index')->withError(trans('lang.text_not_authorized'));
         }
     
         // Mettre à jour les autres attributs du document
@@ -126,7 +126,7 @@ class DocumentController extends Controller
         // Vérifier si l'utilisateur actuel est l'auteur du document
         if (Auth::user()->id !== $document->user_id) {
             // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
-            return redirect()->route('document.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+            return redirect()->route('document.index')->withError(trans('lang.text_not_authorized'));
         }
 
         // Supprimer le fichier s'il existe

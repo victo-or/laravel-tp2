@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ForumPost;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 //use Barryvdh\DomPDF\Facade as PDF;
@@ -22,13 +22,6 @@ class ForumPostController extends Controller
         $posts = ForumPost::orderBy('created_at', 'desc')
             ->paginate(5);
         return view('forum.index', ['posts'=>$posts]);
-
-        // if(Auth::check()){
-        //     $posts = ForumPost::all();
-        //     return view('forum.index', ['posts'=>$posts]);
-        // }else{
-        //     return redirect(route('login'));
-        // }
         
     }
 
@@ -56,9 +49,7 @@ class ForumPostController extends Controller
             'body' => 'required|string',
             'body_fr' => 'required|string'
         ]);
-        //return $request;
-        //insert into forum_posts(title, body) values (?, ?);
-        //return $newData = select * from forum_post where id = lastInsertedId
+ 
         $newPost = ForumPost::create([
             'title' => $request->title,
             'body' => $request->body,
@@ -78,15 +69,6 @@ class ForumPostController extends Controller
      */
     public function show(ForumPost $forumPost)
     {
-        //$forumPost = SELECT * FROM `forum_posts` WHERE id = $forumPost;
-        //$stmt = $connex->prepare(SELECT * FROM `forum_posts` WHERE id = ?)
-        //$stmt->execute(array(10));
-        //$stmt-fetch();
-        /*   $query = ForumPost::select()
-                ->join('users', 'user_id', '=','users.id')
-                ->where('forum_posts.id', 1)
-                //->orderby('title')
-                ->get();*/
                 
         return view('forum.show', ['forumPost' => $forumPost]);
     }
@@ -114,7 +96,7 @@ class ForumPostController extends Controller
         // Vérifier si l'utilisateur actuel est l'auteur
         if (Auth::user()->id !== $forumPost->user_id) {
             // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
-            return redirect()->route('forum.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+            return redirect()->route('forum.index')->withError(trans('lang.text_not_authorized'));
         }
 
         $request->validate([
@@ -123,8 +105,6 @@ class ForumPostController extends Controller
             'body' => 'required|string',
             'body_fr' => 'nullable|string'
         ]);
-        //return $request;
-        //return $forumPost;
        
         $forumPost->update([
             'title' => $request->title,
@@ -147,7 +127,7 @@ class ForumPostController extends Controller
         // Vérifier si l'utilisateur actuel est l'auteur
         if (Auth::user()->id !== $forumPost->user_id) {
             // L'utilisateur n'est pas autorisé, renvoyez un message d'erreur ou redirigez-le.
-            return redirect()->route('forum.index')->withError('Vous n\'êtes pas autorisé à effectuer cette action.');
+            return redirect()->route('forum.index')->withError(trans('lang.text_not_authorized'));
         }
         
         //return $forumPost;
@@ -156,110 +136,12 @@ class ForumPostController extends Controller
         return redirect(route('forum.index'))->withSuccess(trans('lang.text_data_delete'));
     }
 
-    public function query(){
-    //SELECT
-    //select * from forum_posts;
-       // $query = ForumPost::all();
-       // $query = $query[0];
-
-       //$query = ForumPost::select()->get();
-       //$query = ForumPost::select()->first();
-
-       /*$query = ForumPost::select('title', 'body')
-                ->orderby('title', 'desc')
-                ->get();
-        */
-
-        //WHERE
-        //SELECT * FROM forum_posts WHERE id = 1;
-
-        /*$query = ForumPost::select()
-                ->where('id','=', 1)
-                ->get();
-         afficher la donnee = $query[0]->id
-        */
-        /*$query = ForumPost::select()
-                ->where('id','=', 1)
-                ->first();
-        afficher la donnee = $query->id
-        */
-        /*
-        WHERE PK
-        $query = ForumPost::find(1);
-        afficher la donnee = $query->id
-        */
-        /*
-        $query = ForumPost::select()
-                ->where('user_id','!=', 1)
-                ->get();
-        */
-        //AND
-        /*$query = ForumPost::select()
-                ->where('user_id','!=', 1)
-                ->where('title', 'Amet aliquam sequi aut et.')
-                ->get();
-        */
-        /*
-        $query = ForumPost::select()
-                ->where('user_id','!=', 1)
-                ->where('title', 'like','Am%')
-                ->get();
-        */
-        //OR
-        /*$query = ForumPost::select()
-                ->where('user_id', 1)
-                ->orwhere('id',2)
-                ->get();
-        */
-
-        //JOIN INNER
-        $query = ForumPost::select()
-                ->join('users', 'user_id', '=','users.id')
-                ->where('forum_posts.id', 1)
-                //->orderby('title')
-                ->get();
-        
-        //OUTER INNER   
-        /*$query = ForumPost::select()
-            ->rightJoin('users', 'user_id', '=','users.id')
-            ->get();
-        */
-
-        //Aggregation function : Max, Min, Avg, Count, Sum
-
-        /*$query = ForumPost::count('id');*/
-
-        /*$query = ForumPost::select()
-        ->where('user_id', 1)
-        ->count();
-        */
-
-        //raw queries
-
-        // SELECT count(*) as forums, user_id FROM forum_posts group by user_id
-
-        /*$query = ForumPost::select(DB::raw('count(*) as forums'), 'user_id')
-                ->groupBy('user_id')
-                ->get();
-        */
-
-        return $query;
-    }
-
     public function page(){
         $forumPost = ForumPost::Select()
                     ->paginate(5);
 
         return view('forum.page', ['forumPosts' => $forumPost]);
     }
-
-    // public function showPDF(ForumPost $forumPost){
-    //     //return $forumPost;
-
-    //     $pdf = PDF::loadView('forum.show-pdf', ['forumPost' => $forumPost]);
-    //     //return $pdf->download('pdfname.pdf');
-    //     return $pdf->stream('pdfname.pdf');
-    // }
 
 }
 

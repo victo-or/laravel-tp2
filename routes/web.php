@@ -30,18 +30,16 @@ Route::get('/etudiant-edit/{etudiant}', [EtudiantController::class, 'edit'])->na
 Route::put('/etudiant-edit/{etudiant}', [EtudiantController::class, 'update']);
 Route::delete('/etudiant-delete/{etudiant}', [EtudiantController::class, 'destroy'])->name('etudiant.delete');
 
+// FORUM
 Route::get('/forum', [ForumPostController::class, 'index'])->name('forum.index')->middleware('auth');
 Route::get('/forum/{forumPost}', [ForumPostController::class, 'show'])->name('forum.show');
-// préférable d'utiliser - plutot que _ et aussi, on ne pourrait pas faire /forum/create étant donné la route "/forum/{forumPost}"
 Route::get('/forum-create', [ForumPostController::class, 'create'])->name('forum.create')->middleware('auth');
 Route::post('/forum-create', [ForumPostController::class, 'store']);
 Route::get('/forum-edit/{forumPost}', [ForumPostController::class, 'edit'])->name('forum.edit');
 Route::put('/forum-edit/{forumPost}', [ForumPostController::class, 'update']);
 Route::delete('/forum-delete/{forumPost}', [ForumPostController::class, 'destroy'])->name('forum.delete');
-Route::get('/query', [ForumPostController::class, 'query']);
-Route::get('/page', [ForumPostController::class, 'page']);
-Route::get('/forum-pdf/{forumPost}', [ForumPostController::class, 'showPdf'])->name('forum.showPDF');
 
+// DOCUMENTS
 Route::get('/document', [DocumentController::class, 'index'])->name('document.index')->middleware('auth');
 Route::get('/document-create', [DocumentController::class, 'create'])->name('document.create')->middleware('auth');
 Route::post('/document-create', [DocumentController::class, 'store']);
@@ -49,20 +47,11 @@ Route::get('/document-edit/{document}', [DocumentController::class, 'edit'])->na
 Route::put('/document-edit/{document}', [DocumentController::class, 'update']);
 Route::delete('/document-delete/{document}', [DocumentController::class, 'destroy'])->name('document.delete');
 
-// Route::get('/user-list', [CustomAuthController::class, 'userList'])->name('user.list');
 
-
-// Route::get('/registration', [CustomAuthController::class, 'create'])->name('user.create');
-// Route::post('/registration', [CustomAuthController::class, 'store']);
+// AUTH
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('/login', [CustomAuthController::class, 'authentification']);
-// Route::get('/user-list', [CustomAuthController::class, 'userList'])->name('user.list');
 Route::get('/logout', [CustomAuthController::class, 'logout'])->name('logout');
-
-// Route::get('/forgot-password', [CustomAuthController::class, 'forgotPassword'])->name('forgot-password');
-// Route::post('/forgot-password', [CustomAuthController::class, 'tempPassword']);
-// Route::get('/new-password/{user}/{tempPassword}', [CustomAuthController::class, 'newPassword'])->name('new.password');
-// Route::post('/new-password/{user}/{tempPassword}', [CustomAuthController::class, 'storeNewPassword']);
 
 
 

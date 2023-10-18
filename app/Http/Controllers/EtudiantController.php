@@ -19,7 +19,7 @@ class EtudiantController extends Controller
     public function index()
     {
         //SELECT * FROM `etudiants` 
-        $etudiants = Etudiant::all();
+        $etudiants = Etudiant::orderBy('created_at', 'desc')->get();
         return view('etudiant.index', ['etudiants'=>$etudiants]);
     }
 
@@ -139,7 +139,7 @@ class EtudiantController extends Controller
             return redirect()->route('etudiant.show', $etudiant->user_id)->withSuccess(trans('lang.text_data_update'));
         } else {
             // Gérez le cas où l'étudiant n'a pas été trouvé
-            return redirect()->route('etudiant.index')->withError('Étudiant non trouvé');
+            return redirect()->route('etudiant.index')->withError(trans('lang.text_not_found'));
         }
     }
     
