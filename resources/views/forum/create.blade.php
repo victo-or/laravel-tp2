@@ -12,12 +12,9 @@
                 <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <form method="post">
                     @csrf
-                        <div class="card-header">
-                        @lang('lang.text_form')
-                        </div>
                         <div class="card-body">   
                                 <div class="control-grup col-12">
                                     <label for="title">@lang('lang.text_title') (EN)</label>
@@ -62,8 +59,8 @@
                                     @endif
                                 </div>
                         </div>
-                        <div class="card-footer">
-                            <input type="submit" class="btn btn-success" value="@lang('lang.text_add')">
+                        <div class="d-grid mx-auto">
+                            <input type="submit" class="btn text-muted shadow-lg btn-block m-3" value="@lang('lang.text_add')">
                         </div>
                     </form>
                 </div>

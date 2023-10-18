@@ -22,13 +22,16 @@ li {
   list-style-type: none;
   font-style: italic;
 }
-p, select, form label, li a {
+p, select, form label, li a, .navbar-brand, .nav-link, .page-link {
   color:rgba(220, 220, 220, 0.263);
-  text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
-h1:hover, h2:hover, p:hover, form select:hover, form label:hover, li a:hover {
+/* h1:hover, h2:hover,  */
+p:hover:not(footer p), form select:hover, form label:hover, li a:hover, .page-link:hover {
   color: black;
+  transition: color 0.3s ease-in-out; /* Ajout de la transition sur la couleur */
 }
+
 .svg-logo {
   width: 500px;
   filter: drop-shadow(2px 3px 10px rgba(0, 0, 0, 0.2));
@@ -45,4 +48,8 @@ h1:hover, h2:hover, p:hover, form select:hover, form label:hover, li a:hover {
 
 .custom-next .carousel-control-next-icon::before {
   font-size: 1rem; /* Ajustez la taille des flèches selon vos besoins */
+}
+
+button {
+  color: black;
 }

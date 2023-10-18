@@ -4,20 +4,17 @@
 
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <h1 class="display-one">
+                <h2 class="display-one">
                     @lang('lang.text_add_document')
-                </h1>
+                </h2>
             </div> <!--/col-12-->
         </div><!--/row-->
                 <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card  shadow-lg border-0">
                     <form method="post" enctype="multipart/form-data">
                     @csrf
-                        <div class="card-header">
-                            @lang('lang.text_form')
-                        </div>
                         <div class="card-body">   
                                 <div class="control-grup col-12">
                                     <label for="title">@lang('lang.text_title') (EN)</label>
@@ -52,8 +49,8 @@
                                         </div>
                             @endif
                         </div>
-                        <div class="card-footer">
-                            <input type="submit" class="btn btn-success" value="@lang('lang.text_add')">
+                        <div class="d-grid mx-auto">
+                            <input type="submit" class="btn text-muted shadow-lg m-3" value="@lang('lang.text_add')">
                         </div>
                     </form>
                 </div>

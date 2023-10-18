@@ -113,7 +113,7 @@ class EtudiantController extends Controller
             'nom' => 'required|string|min:2',
             'adresse' => 'required',
             'phone' => 'required|regex:/^(\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/',
-            'email' => 'required|email|unique:users,email,' . $etudiant->id,
+            'email' => 'required|email|unique:users,email,' . $etudiant->user_id,
             'date_de_naissance' => 'required|date',
             'ville_id' => 'required|exists:villes,id',
         ]);
@@ -136,7 +136,7 @@ class EtudiantController extends Controller
                 $user->save();
             }
     
-            return redirect()->route('etudiant.show', $etudiant->user_id)->withSuccess('Données mises à jour');
+            return redirect()->route('etudiant.show', $etudiant->user_id)->withSuccess(trans('lang.text_data_update'));
         } else {
             // Gérez le cas où l'étudiant n'a pas été trouvé
             return redirect()->route('etudiant.index')->withError('Étudiant non trouvé');
@@ -155,6 +155,6 @@ class EtudiantController extends Controller
         // return $etudiant;
         $etudiant->delete();
 
-        return redirect(route('etudiant.index'))->withSuccess('Donnée effacée');
+        return redirect(route('etudiant.index'))->withSuccess(trans('lang.text_data_delete'));
     }
 }

@@ -15,6 +15,7 @@
 
     return [
         'text_hello' => 'Bonjour',
+        'text_welcome' => 'Bienvenu!',
         'text_logout' => 'Se déconnecter',
         'text_english' => 'Anglais',
         'text_french' => 'Français',
@@ -68,6 +69,8 @@
 
         // Messages
         'text_data_insert' => 'Données insérées',
+        'text_data_update' => 'Données mises à jour',
+        'text_data_delete' => 'Données supprimées',
 
         // Footer
         "text_copyrights" => "Tous droits réservés."

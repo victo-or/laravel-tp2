@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-12 pt-2">
-            <a href="{{ route('etudiant.index')}}" class="btn btn-outline-light shadow-lg btn-sm">Retourner</a>
+            <a href="{{ route('etudiant.index')}}" class="btn text-muted shadow-lg btn-sm">Retourner</a>
             <h2 class="mt-5">
                 {{ $etudiant->nom }}
             </h2>
@@ -33,10 +33,10 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <a href="{{route('etudiant.edit', $etudiant->user_id)}}" class="btn btn-outline-light shadow-lg">@lang('lang.text_update')</a>
+            <a href="{{route('etudiant.edit', $etudiant->user_id)}}" class="btn text-muted shadow-lg">@lang('lang.text_update')</a>
         </div>
         <div class="col-6 d-flex justify-content-end">
-            <button type="button" class="btn btn-outline-light shadow-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <button type="button" class="btn text-muted shadow-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 @lang('lang.text_delete')
             </button>
         </div>

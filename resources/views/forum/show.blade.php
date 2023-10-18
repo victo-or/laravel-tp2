@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('title', 'Forum')
 @section('content')
-<hr>
+
     <div class="row">
         <div class="col-12 pt-2">
-            <a href="{{ route('forum.index')}}" class="btn btn-outline-primary btn-sm">@lang('lang.text_return')</a>
-            <h4 class="display-4 mt-5">
+            <a href="{{ route('forum.index')}}" class="btn text-muted shadow-lg">@lang('lang.text_return')</a>
+            <h2 class="display-4 mt-5">
                 {{ $forumPost->title }}
-            </h4>
-            <hr>
+            </h2>
+            
             <p>
                 {!! $forumPost->body !!}
             </p>
@@ -17,21 +17,22 @@
             </p>
         </div>
     </div>
-    <hr>
+    @if (Auth::user()->id === $forumPost->user_id)
     <div class="row mb-5">
-        <div class="col-4">
+        <!-- <div class="col-4">
             <a href="{{route('forum.showPDF', $forumPost->id)}}" class="btn btn-warning">PDF</a>
+        </div> -->
+        <div class="col-6">
+            <a href="{{route('forum.edit', $forumPost->id)}}" class="btn text-muted shadow-lg">@lang('lang.text_modify')</a>
         </div>
-        <div class="col-4">
-            <a href="{{route('forum.edit', $forumPost->id)}}" class="btn btn-primary">@lang('lang.text_modify')</a>
-        </div>
-        <div class="col-4">
+        <div class="d-flex col-6 justify-content-end">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <button type="button" class="btn text-muted shadow-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">
             @lang('lang.text_delete')
             </button>
         </div>
     </div>
+    @endif
 
 
 <!-- Modal -->

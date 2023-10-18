@@ -3,7 +3,7 @@
 @section('content')
         <div class="row">
         <div class="col-12 pt-2">
-            <a href="{{ route('etudiant.index')}}" class="btn btn-outline-light shadow-lg btn-sm">Retourner</a>
+            <a href="{{ route('etudiant.index')}}" class="btn text-muted shadow-lg btn-sm">@lang('lang.text_return')</a>
         </div>
         <div class="col-12 text-center pt-2">
             <h2 class="display-one">
@@ -85,8 +85,8 @@
                                     @endif
                                 </div>
                         </div>
-                        <div>
-                            <input type="submit" value="@lang('lang.text_add')" class="btn btn-outline-light shadow-lg col-12">
+                        <div class="d-grid mx-auto">
+                            <input type="submit" value="@lang('lang.text_add')" class="btn text-muted shadow-lg m-3">
                         </div>
                     </form>
                 </div>

@@ -52,8 +52,8 @@ Route::delete('/document-delete/{document}', [DocumentController::class, 'destro
 // Route::get('/user-list', [CustomAuthController::class, 'userList'])->name('user.list');
 
 
-Route::get('/registration', [CustomAuthController::class, 'create'])->name('user.create');
-Route::post('/registration', [CustomAuthController::class, 'store']);
+// Route::get('/registration', [CustomAuthController::class, 'create'])->name('user.create');
+// Route::post('/registration', [CustomAuthController::class, 'store']);
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('/login', [CustomAuthController::class, 'authentification']);
 // Route::get('/user-list', [CustomAuthController::class, 'userList'])->name('user.list');

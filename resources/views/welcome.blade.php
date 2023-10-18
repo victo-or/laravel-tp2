@@ -1,10 +1,11 @@
 @extends('layouts.app')
-@section('title', 'Accueil')
+@section('title', 'Cadriciel Cult')
 @section('content')
 
-    <p>
-        Bienvenu chez Anonymous recruit
-    </p>
-    <a href="{{route('etudiant.index')}}" class="btn btn-outline-light shadow-lg">Voir la liste d'étudiants</a>
+    <div class="d-flex justify-content-center">
+        <h2>
+            @lang('lang.text_welcome')
+        </h2>
+    </div>
 
 @endsection

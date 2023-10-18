@@ -2,6 +2,7 @@
     // ENGLISH
     return [
         'text_hello' => 'Hello',
+        'text_welcome' => 'Welcome!',
         'text_logout' => 'Disconnect',
         'text_english' => 'English',
         'text_french' => 'French',
@@ -57,6 +58,8 @@
 
         // Messages
         'text_data_insert' => 'Data inserted',
+        'text_data_update' => 'Data updated',
+        'text_data_delete' => 'Data deleted',
 
         // Footer
         "text_copyrights" => "All rights reserved."

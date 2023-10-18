@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             @php $locale = session()->get('locale')
             @endphp
@@ -23,7 +23,6 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     @guest
-                        <a class="nav-link" href="{{route('user.create')}}">Registration</a>
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                     @else
                         <!-- <a class="nav-link" href="#">User List</a> -->
@@ -34,8 +33,8 @@
                         <a class="nav-link" href="{{route('logout')}}">@lang('lang.text_logout')</a>
                     @endguest
 
-                    <a class="nav-link @if($locale=='en') bg-secondary @endif"  href="{{route('lang', 'en')}}" >@lang('lang.text_english')</a>
-                    <a class="nav-link @if($locale=='fr') bg-secondary @endif"  href="{{route('lang', 'fr')}}" >@lang('lang.text_french')</a>
+                    <a class="nav-link @if($locale=='en') text-decoration-underline @endif"  href="{{route('lang', 'en')}}" >@lang('lang.text_english')</a>
+                    <a class="nav-link @if($locale=='fr') text-decoration-underline @endif"  href="{{route('lang', 'fr')}}" >@lang('lang.text_french')</a>
                 </div>
             </div>
         </div>
@@ -44,7 +43,8 @@
         <div class="row">
             <div class="col-12 pt-4">
                 <div class="d-flex justify-content-center">
-                    <svg class="svg-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1366 500" style="enable-background:new 0 0 1366 500;" xml:space="preserve">
+                    <h1 class="m-3">CADRICIEL CULT</h1>
+                    <!-- <svg class="svg-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1366 500" style="enable-background:new 0 0 1366 500;" xml:space="preserve">
                         <style type="text/css">
                             .st0 {
                                 fill: #FFFFFF;
@@ -247,7 +247,7 @@
                         </g>
                         <g>
                         </g>
-                    </svg>
+                    </svg> -->
                 </div>
 
                 @if(session('success'))
@@ -261,7 +261,7 @@
         </div>
     </div>
     <footer>
-        <p class="m-5 text-center">&copy; 2023 Anonymous recruit. @lang('lang.text_copyrights')</p>
+        <p class="m-5 text-center">&copy; 2023 Cadriciel Cult. @lang('lang.text_copyrights')</p>
     </footer>
 </body>
 <!--Bootstrap JS CDN-->

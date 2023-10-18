@@ -19,39 +19,6 @@ class CustomAuthController extends Controller
         return view('auth.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('auth.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|min:2',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|max:20'
-        ]);
-
-        $user = new User;
-        $user->fill($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
-
-        return redirect(route('login'))->withSuccess('Utilisateur enregistré');
-    }
-
-
     public function authentification(Request $request){
         $request->validate([
             'email' => 'required|email|exists:users',

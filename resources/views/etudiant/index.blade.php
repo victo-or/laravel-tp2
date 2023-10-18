@@ -5,18 +5,18 @@
     <div class="row">
 
         <div class="d-flex justify-content-end">
-            <a href="{{ route('etudiant.create')}}" class='btn btn-outline-light shadow-lg'>@lang('lang.text_add')</a>
+            <a href="{{ route('etudiant.create')}}" class='btn text-muted shadow-lg'>@lang('lang.text_add')</a>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-12">
-        <div class="row">
-            <div class="col-12 text-center pt-2">
-                <h2 class="display-one">
-                    @lang('lang.text_student_list')
-                </h2>
+            <div class="row">
+                <div class="col-12 text-center pt-2">
+                    <h2 class="display-one">
+                        @lang('lang.text_student_list')
+                    </h2>
+                </div>
             </div>
-        </div>
             <div class="card shadow-lg border-0">
                 <div class="card-body">
                     

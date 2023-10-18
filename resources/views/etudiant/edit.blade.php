@@ -4,21 +4,17 @@
 
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <h1 class="display-one">
+                <h2 class="display-one">
                     @lang('lang.text_modify_student')
-                </h1>
+                </h2>
             </div> <!--/col-12-->
         </div><!--/row-->
-                <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <form method="post">
                     @method('put')
                     @csrf
-                    <div class="card-header">
-                        @lang('lang.text_form')
-                        </div>
                         <div class="card-body">   
                                 <div class="control-group col-12">
                                     <label for="nom">@lang('lang.text_name')</label>
@@ -89,8 +85,8 @@
                                     @endif
                                 </div>
                         </div>
-                        <div class="card-footer">
-                            <input type="submit" value="@lang('lang.text_update')" class="btn btn-success">
+                        <div class="d-grid mx-auto">
+                            <input type="submit" value="@lang('lang.text_update')" class="btn text-muted shadow-lg btn-block mt-3">
                         </div>
                     </form>
                 </div>

@@ -19,7 +19,8 @@ class ForumPostController extends Controller
     public function index()
     {
         //SELECT * FROM `forum_posts` 
-        $posts = ForumPost::all();
+        $posts = ForumPost::orderBy('created_at', 'desc')
+            ->paginate(5);
         return view('forum.index', ['posts'=>$posts]);
 
         // if(Auth::check()){
@@ -51,9 +52,9 @@ class ForumPostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:100',
-            'title_fr' => 'nullable|string|max:100',
+            'title_fr' => 'required|string|max:100',
             'body' => 'required|string',
-            'body_fr' => 'nullable|string'
+            'body_fr' => 'required|string'
         ]);
         //return $request;
         //insert into forum_posts(title, body) values (?, ?);
@@ -132,7 +133,7 @@ class ForumPostController extends Controller
             'body_fr' => $request->body_fr,
         ]);
         
-        return redirect(route('forum.show', $forumPost->id))->withSuccess('Donnée mise à jour');
+        return redirect(route('forum.show', $forumPost->id))->withSuccess(trans('lang.text_data_update'));
     }
 
     /**
@@ -152,7 +153,7 @@ class ForumPostController extends Controller
         //return $forumPost;
         $forumPost->delete();
 
-        return redirect(route('forum.index'))->withSuccess('Donnée effacée');
+        return redirect(route('forum.index'))->withSuccess(trans('lang.text_data_delete'));
     }
 
     public function query(){

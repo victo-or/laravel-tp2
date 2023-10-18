@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', __('lang.text_sign_in'))
 @section('content')
-        <hr>
+
         @if(!$errors->isEmpty())
             <ul>
             @foreach($errors->all() as $error)
@@ -9,14 +9,18 @@
             @endforeach
             </ul>
         @endif
+        <div class="row">
+            <div class="col-12 text-center pt-2">
+                <h2 class="display-one">
+                    @lang('lang.text_sign_in')
+                </h2>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card shadow-lg border-0">
                     <form method="post">
                     @csrf
-                        <div class="card-header">
-                            <h3>@lang('lang.text_sign_in')</h3>
-                        </div>
                         <div class="card-body">   
                             <div class="control-grup col-12">
                                 <label for="email">@lang('lang.text_email')</label>
@@ -38,12 +42,13 @@
                                         </div>
                                 @endif
                             </div>
-                        </div>
-                        <div class="card-footer">
                             <div class="d-grid mx-auto">
-                                <input type="submit" class="btn btn-success btn-block" value="@lang('lang.text_sign_in')">
+                                <input type="submit" class="btn text-muted shadow-lg btn-block mt-3" value="@lang('lang.text_sign_in')">
                             </div>
                         </div>
+                        <!-- <div class="card-footer">
+
+                        </div> -->
                     </form>
                 </div>
             </div>
