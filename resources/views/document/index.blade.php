@@ -37,7 +37,7 @@
             <tbody>
                 @foreach($documents as $document)
                     <tr>
-                        <td>{{ $document->documentHasUser->name }}</td>
+                        <td><p>{{ $document->documentHasUser->name }}</p></td>
                         <td>{{ $document->title }}</td>
                         <td>
                             <a href="{{ asset('uploads/' . $document->file_name) }}" download="{{ $document->file_name }}">@lang('lang.text_download')</a>

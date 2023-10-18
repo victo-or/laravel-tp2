@@ -36,7 +36,7 @@
                 <tbody>
                     @foreach($posts as $post)
                         <tr>
-                            <td>{{ $post->forumHasUser->name }}</td>
+                            <td><p>{{ $post->forumHasUser->name }}</p></td>
                             <td>
                                 <a href="{{ route('forum.show', $post->id) }}">{{ $post->title }}</a>
                             </td>
