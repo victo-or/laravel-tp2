@@ -1,64 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# TP2 - Cadriciel Web
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Ce projet est lié au TP2 "Cadriciel Web" réalisé dans le cadre du cours.
 
-## About Laravel
+## Informations de Connexion
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Pour vous connecter au site, utilisez les informations suivantes :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Adresse e-mail : victorvcham@gmail.com
+- Mot de passe : 2000-01-01
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Lignes de Commande (Partie TP1)
 
-## Learning Laravel
+### Créer un Projet Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Pour créer un nouveau projet Laravel nommé "Maisonneuve{votre matricule}", utilisez la commande suivante. Remplacez `{votre matricule}` par votre numéro de matricule.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+composer create-project --prefer-dist laravel/laravel Maisonneuve{votre matricule} "8.*"
+```
 
-## Laravel Sponsors
+**Note :** Pour le cours "webdev", utilisez le projet vide Laravel compatible.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Créer des Modèles et des Tables avec Migration
 
-### Premium Partners
+Pour créer les modèles et les tables avec migration, utilisez les commandes suivantes :
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+```bash
+php artisan make:model Ville -m
+php artisan make:model Etudiant -m
+php artisan migrate
+```
 
-## Contributing
+### Créer des Données de Test
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Pour créer des données de test, vous pouvez suivre ces étapes :
 
-## Code of Conduct
+1. Créez des factories pour les modèles Ville et Etudiant :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan make:factory VilleFactory
+php artisan make:factory EtudiantFactory
+```
 
-## Security Vulnerabilities
+2. Utilisez Tinker pour créer les données de test. Par exemple, pour créer 15 enregistrements de Ville et 100 enregistrements d'Etudiant :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan tinker
+>>> \App\Models\Ville::factory()->times(15)->create();
+>>> \App\Models\Etudiant::factory()->times(100)->create();
+```
 
-## License
+### Créer des Contrôleurs
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Pour créer des contrôleurs, utilisez la commande suivante (par exemple, pour créer le contrôleur Etudiant) :
+
+```bash
+php artisan make:controller EtudiantController
+```
+
+## Lignes de Commande (Partie TP2)
+
+### Mise à Jour des Mots de Passe pour les Utilisateurs
+
+Pour attribuer les mots de passe aux utilisateurs créés avec les données existantes de la table étudiants, suivez ces étapes :
+
+1. Créez une migration pour la mise à jour des mots de passe :
+
+```bash
+$ php artisan make:migration update_temporary_password
+```
+
+2. Exécutez la migration :
+
+```bash
+$ php artisan migrate --path=database/migrations/2023_10_12_041417_update_temporary_password.php
+```
+
+Dans l'application WorkBench, exécutez les requêtes SQL pour transférer les données des étudiants vers les utilisateurs.
+
+### Créer le Controller CustomAuthController
+
+Pour créer le contrôleur CustomAuthController, utilisez la commande suivante :
+
+```bash
+$ php artisan make:controller CustomAuthController -m User
+```
+
+### Créer le Controller LocalizationController
+
+Pour créer le contrôleur LocalizationController, utilisez la commande suivante :
+
+```bash
+$ php artisan make:controller LocalizationController
+```
+
+### Créer le Middleware Localization
+
+Pour créer le middleware Localization, utilisez la commande suivante :
+
+```bash
+$ php artisan make:middleware Localization
+```
+
+### ForumPost
+
+Pour créer le modèle, la migration, la factory, les données de test et le contrôleur pour ForumPost, suivez ces étapes :
+
+```bash
+$ php artisan make:model ForumPost -m
+$ php artisan migrate --path=database/migrations/2023_10_09_211857_create_forum_posts_table.php
+$ php artisan make:factory ForumPostFactory
+$ php artisan tinker
+>>> \App\Models\ForumPost::factory()->times(100)->create();
+$ php artisan make:controller ForumPostController
+```
+
+### Document
+
+Pour créer le modèle, la migration et le contrôleur pour Document, suivez ces étapes :
+
+```bash
+$ php artisan make:model Document -m
+$ php artisan migrate --path=database/migrations/2023_10_09_212301_create_documents_table.php
+$ php artisan make:controller DocumentController
+```
+
+## Liens Utiles
+
+- [GitHub Repository](https://github.com/victo-or/laravel-tp2)
+- [Site Web](https://e2296796.webdev.cmaisonneuve.qc.ca/Maisonneuve2296796/)
+```
+
