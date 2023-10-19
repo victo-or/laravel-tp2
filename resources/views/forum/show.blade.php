@@ -19,9 +19,6 @@
     </div>
     @if (Auth::user()->id === $forumPost->user_id)
     <div class="row mb-5">
-        <!-- <div class="col-4">
-            <a href="{{route('forum.showPDF', $forumPost->id)}}" class="btn btn-warning">PDF</a>
-        </div> -->
         <div class="col-6">
             <a href="{{route('forum.edit', $forumPost->id)}}" class="btn text-muted shadow-lg">@lang('lang.text_modify')</a>
         </div>
